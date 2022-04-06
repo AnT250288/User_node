@@ -1,0 +1,16 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "user.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "user.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aleynikov",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
