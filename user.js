@@ -8,7 +8,7 @@ const http = require('http')
 let data = User
 
 async function postNewUser(request) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         let body = ''
         request
             .on('data', chunk => {
@@ -22,18 +22,14 @@ async function postNewUser(request) {
 }
 
 http.createServer(async (request, response) => {
-
     switch (request.method) {
         case 'GET':
-            response.writeHead(200, {'Content-Type': 'user/json'})
             response.end(JSON.stringify(data))
             break;
         case 'POST':
             await postNewUser(request)
             data.push(request.body)
-            response.writeHead(200, {'Content-Type': 'user/json'})
-            response.write(JSON.stringify(data))
-            response.end()
+            response.end(JSON.stringify(data))
             break;
         case 'PUT':
             let user = ''
@@ -43,9 +39,7 @@ http.createServer(async (request, response) => {
             request.on('end', () => {
                 data = JSON.parse(user)
             })
-            response.writeHead(200, {'Content-Type': 'user/json'})
-            response.write(JSON.stringify(data))
-            response.end()
+            response.end(JSON.stringify(data))
             break;
     }
 }).listen(3000, () => {
